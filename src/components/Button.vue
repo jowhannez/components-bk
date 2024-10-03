@@ -3,17 +3,16 @@ import { PropType } from 'vue';
 
 defineProps({
     label: String,
+    href: String,
     icon: String,
     iconPosition: {
         type: String as PropType<'before' | 'after'>,
         default: 'before'
     },
-    href: String,
     variant: {
         type: String as PropType<'primary' | 'secondary'>,
         default: 'primary'
-    },
-    onClick: Function as PropType<() => void>
+    }
 });
 
 </script>
