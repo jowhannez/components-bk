@@ -117,7 +117,7 @@ export default {
 
 <template>
     <form class="filters" @submit="event => event.preventDefault()">
-        <Input 
+        <Input v-if="search"
             v-on:update:modelValue="value => onInput(value)"
             placeholder="Search for name"/>
         <div class="filters__checkboxes">
