@@ -5,6 +5,8 @@ import Button from './Button.vue';
 
 export default {
     props: {
+        cssVars: Object,
+        style: Object,
         modelValue: {
             type: [String, Number] as PropType<string | number>,
             default: ''
@@ -16,7 +18,6 @@ export default {
             type: String as PropType<'before' | 'after'>,
             default: 'before'
         },
-        buttonLabel: String,
         lazy: {
             type: Boolean,
             default: false
@@ -25,7 +26,8 @@ export default {
         inputClass: {
             type: String,
             default: ''
-        }
+        },
+        button: Object
     },
     components: {
         Button
@@ -72,21 +74,26 @@ export default {
     <div class="input" :class="{ 'has-prefix': prefix, 'has-suffix': suffix }">
         <img class="input__icon input__icon--before" v-if="icon && iconPosition === 'before'" :src="icon" alt="">
 
-        <span class="input__prefix" v-if="prefix">{{ prefix }}</span>
+        <span v-if="prefix" class="input__prefix">{{ prefix }}</span>
         <input 
             class="input__input" 
             :value="modelValue" 
-            :style="{ marginRight: buttonLabel ? '1rem' : '' }"
+            :style="{ ...style, ...{ marginRight: button && prefix ? '1rem' : '' } }"
             @input="onInput" 
             @change="onChange" 
             :placeholder="placeholder" />
+        <span v-if="suffix"
+            class="input__suffix" 
+            :style="{ marginRight: button && suffix ? '1rem' : '' }">{{ suffix }}</span>
 
-        <Button v-if="buttonLabel"
-            :label="buttonLabel" 
-            variant="primary" 
+        <Button v-if="button"
+            :style="cssVars"
+            :label="button.label" 
+            :href="button.href"
+            :icon="button.icon"
+            :iconPosition="button.iconPosition"
+            :variant="button.variant"
             @buttonClick="onButtonClick"></Button>
-
-        <span class="input__suffix" v-if="suffix">{{ suffix }}</span>
 
         <img class="input__icon input__icon--before" v-if="icon && iconPosition === 'before'" :src="icon" alt="">
     </div>
@@ -97,8 +104,19 @@ export default {
     position: relative;
     bottom: -1px;
     border: none;
-    padding: 0.5rem;
+    padding: 0.7rem;
     border-radius: 0.25rem;
     font-size: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+    .input__input {
+        width: 80%;
+        margin-bottom: 1rem;
+    }
+}
+.input__prefix,
+.input__suffix {
+    margin: 0 0.5rem;
 }
 </style>

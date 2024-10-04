@@ -3,6 +3,8 @@ import { PropType } from 'vue';
 
 export default {
     props: {
+        cssVars: Object,
+        style: Object,
         label: String,
         href: String,
         icon: String,
@@ -22,15 +24,19 @@ export default {
             emit('buttonClick');
         };
 
-        return {onButtonClick};
+        return {
+            onButtonClick
+        };
     }
 };
 </script>
 
 <template>
     <component :is="href ? 'a' : 'button'" :href="href" :target="href ? '_blank' : null"
+        :style="style"
         :rel="href ? 'noopener noreferrer' : null" @click="onButtonClick"
-        :class="['button', `button--${variant}`, { 'button--has-icon': icon }]">
+        :class="['button', `button--${variant}`, { 'button--has-icon': icon }]"
+        :aria-label="href ? 'Opens in new tab' : ''">
 
         <img v-if="icon && iconPosition === 'before'" class="button__icon button__icon--before" :src="icon" alt="">
         <span class="button__label" v-if="label">{{ label }}</span>
