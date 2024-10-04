@@ -85,7 +85,7 @@ function handleButtonClick(text: string = 'Clicked button') {
         <Input 
             :button="{
                 label: 'Search',
-                icon: '/assets/search.svg',
+                icon: './assets/search.svg',
                 iconPosition: 'after',
                 variant: 'primary',
             }"
