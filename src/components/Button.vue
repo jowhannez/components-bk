@@ -18,7 +18,7 @@ export default {
         }
     },
     emits: ['buttonClick'],
-    setup(props, { emit }) {
+    setup(_, { emit }) {
         // Handle button click event
         const onButtonClick = () => {
             emit('buttonClick');

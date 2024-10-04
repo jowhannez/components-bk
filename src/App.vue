@@ -16,13 +16,20 @@ const cssVars = computed(() => {
 const inputValue     = ref('');
 const lazyInputValue = ref('');
 
-const dummyData: Array<Object> = [];
+interface DataItem {
+    image: string;
+    name: string;
+    description: string;
+    style: Record<string, string>;
+}
+const dummyData: DataItem[] = [];
 for (let i = 0; i < 10; i++) {
     dummyData.push({
         image: i % 3 === 0 ? '/assets/star.svg' : '',
         name: Math.random().toString(36).substring(7),
         description: 'A star is a luminous sphere of plasma held together by its own gravity.',
-    })
+        style: {}
+    });
 }
 
 function handleButtonClick(text: string = 'Clicked button') {

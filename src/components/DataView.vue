@@ -20,7 +20,6 @@ export default {
         selectable: Boolean,
         actions: Array<{
             label: string,
-            icon: string,
             action: () => void
         }>,
         items: {
