@@ -58,7 +58,7 @@ function handleButtonClick(text: string = 'Clicked button') {
             :style="cssVars"
             variant="primary" 
             label="Test Button" 
-            icon="/assets/star.svg" 
+            icon="./assets/star.svg" 
             iconPosition="before" 
             @buttonClick="() => handleButtonClick('Clicked test button!')"></Button>
 
@@ -70,7 +70,7 @@ function handleButtonClick(text: string = 'Clicked button') {
             :style="cssVars"
             variant="secondary" 
             label="Hyperlink button" 
-            icon="/assets/arrow.svg" 
+            icon="./assets/arrow.svg" 
             iconPosition="after" 
             href="https://www.google.com"></Button>
     </section>
